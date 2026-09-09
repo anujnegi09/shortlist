@@ -34,3 +34,91 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+shortlist/
+│
+├── public/
+│   ├── images/
+│   └── ...
+│
+
+│   │
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── globals.css
+│   │   │
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── board/
+│   │   │   └── page.tsx
+│   │   │
+│   │   └── api/
+│   │       └── waitlist/
+│   │           └── route.ts
+│   │
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Input.tsx
+│   │   │   ├── Modal.tsx
+│   │   │   └── Loading.tsx
+│   │   │
+│   │   ├── landing/
+│   │   │   ├── Hero.tsx
+│   │   │   ├── WaitlistForm.tsx
+│   │   │   └── Features.tsx
+│   │   │
+│   │   └── board/
+│   │       ├── IdeaForm.tsx
+│   │       ├── IdeaCard.tsx
+│   │       ├── IdeaList.tsx
+│   │       └── VoteButton.tsx
+│   │
+│   ├── lib/
+│   │   ├── firebase/
+│   │   │   ├── client.ts
+│   │   │   └── admin.ts
+│   │   │
+│   │   ├── auth/
+│   │   │   └── auth.ts
+│   │   │
+│   │   └── validations/
+│   │       └── waitlist.ts
+│   │
+│   ├── hooks/
+│   │   └── useAuth.ts
+│   │
+│   ├── types/
+│   │   ├── idea.ts
+│   │   └── user.ts
+│   │
+│   └── providers/
+│       └── AuthProvider.tsx
+│
+├── firestore.rules
+├── NOTES.md
+├── README.md
+├── .env.local
+├── .gitignore
+├── next.config.ts
+├── package.json
+├── tsconfig.json
+└── eslint.config.mjs
