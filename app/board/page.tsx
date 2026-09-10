@@ -2,13 +2,13 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { useAuth } from "@/providers/AuthProvider";
 import { getIdeas } from "@/lib/firestore/ideas";
 
 import IdeaForm from "@/components/board/IdeaForm";
 import IdeaList from "@/components/board/IdeaList";
 import Navbar from "@/components/NavBar";
+import Loading from "@/components/common/Loading";
 
 import type { Idea } from "@/components/board/IdeaCard";
 
@@ -49,27 +49,27 @@ export default function BoardPage() {
 
   function handleDeleted(ideaId: string) {
     setIdeas((currentIdeas) =>
-      currentIdeas.filter((idea) => idea.id !== ideaId)
+      currentIdeas.filter((idea) => idea.id !== ideaId),
     );
   }
 
   // UI-only derived list: ideas belonging to the current user
   const myIdeas = useMemo(
     () => ideas.filter((idea) => idea.createdBy === user?.uid),
-    [ideas, user?.uid]
+    [ideas, user?.uid],
   );
 
   if (loading || !user) {
-    return <div>Loading...</div>;
+    return <Loading text="Loading..." fullScreen />;
   }
 
   function handleVoted(ideaId: string) {
-  setIdeas((currentIdeas) =>
-    currentIdeas.map((idea) =>
-      idea.id === ideaId ? { ...idea, votes: (idea.votes || 0) + 1 } : idea
-    )
-  );
-} 
+    setIdeas((currentIdeas) =>
+      currentIdeas.map((idea) =>
+        idea.id === ideaId ? { ...idea, votes: (idea.votes || 0) + 1 } : idea,
+      ),
+    );
+  }
   return (
     <main className="min-h-screen bg-[#F8FAFC]">
       <Navbar />
@@ -119,7 +119,12 @@ export default function BoardPage() {
             Community Ideas
           </h2>
 
-          <IdeaList ideas={ideas} loading={ideasLoading} onVoted={handleVoted} hideDelete />
+          <IdeaList
+            ideas={ideas}
+            loading={ideasLoading}
+            onVoted={handleVoted}
+            hideDelete
+          />
         </section>
       </div>
     </main>

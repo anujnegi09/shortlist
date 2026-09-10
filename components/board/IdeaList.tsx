@@ -1,6 +1,7 @@
 "use client";
 
 import IdeaCard, { Idea } from "./IdeaCard";
+import Loading from "../common/Loading";
 
 type IdeaListProps = {
   ideas: Idea[];
@@ -18,11 +19,7 @@ export default function IdeaList({
   hideDelete = false,
 }: IdeaListProps) {
   if (loading) {
-    return (
-      <div className="rounded-xl bg-white p-6 text-center text-slate-500 shadow-sm">
-        Loading ideas...
-      </div>
-    );
+    return <Loading text="Loading ideas..."/>;
   }
 
   if (ideas.length === 0) {
