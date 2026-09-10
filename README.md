@@ -149,10 +149,7 @@ shortlist/
 ├── app/
 │   ├── actions/
 │   │   └── waitlist.ts
-│   │
-│   ├── api/
-│   │   └── waitlist/
-│   │       └── route.ts
+│   │       
 │   │
 │   ├── board/
 │   │   └── page.tsx
