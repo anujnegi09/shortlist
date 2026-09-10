@@ -10,7 +10,7 @@ export default function Footer() {
         </div>
 
         <p className="text-sm text-slate-400">
-          © {new Date().getFullYear()} Shortlist. All rights reserved.
+          © {new Date().getFullYear()} Shortlist. No rights reserved.
         </p>
       </div>
     </footer>
