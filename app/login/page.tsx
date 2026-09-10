@@ -27,6 +27,7 @@ export default function LoginPage() {
     }
   }
 
+  
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#F8FAFC] px-6">
       <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-900/5">
@@ -56,5 +57,6 @@ export default function LoginPage() {
         )}
       </div>
     </main>
+   
   );
 }

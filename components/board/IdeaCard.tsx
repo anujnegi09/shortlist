@@ -18,15 +18,18 @@ export type Idea = {
 type IdeaCardProps = {
   idea: Idea;
   onDeleted?: (ideaId: string) => void;
+  onVoted?: (ideaId: string) => void;
+  hideDelete?: boolean; // UI-only: hide delete button even if owner
 };
 
 export default function IdeaCard({
   idea,
   onDeleted,
+  onVoted,
+  hideDelete = false,
 }: IdeaCardProps) {
   const { user } = useAuth();
 
-  const [voteCount, setVoteCount] = useState(idea.votes || 0);
   const [voting, setVoting] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
@@ -42,7 +45,7 @@ export default function IdeaCard({
 
       await voteForIdea(idea.id, user.uid);
 
-      setVoteCount((current) => current + 1);
+      onVoted?.(idea.id);
     } catch (error) {
       console.error("Error voting:", error);
       setError("You may have already voted.");
@@ -95,15 +98,15 @@ export default function IdeaCard({
           className="flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-500 hover:text-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <span>▲</span>
-          <span>{voteCount}</span>
+          <span>{idea.votes || 0}</span>
         </button>
       </div>
 
       <p className="mt-4 leading-7 text-slate-600">
         {idea.description}
       </p>
-
-      {isOwner && (
+ 
+      {isOwner && !hideDelete && (
         <button
           type="button"
           onClick={handleDelete}

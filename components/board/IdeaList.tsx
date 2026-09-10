@@ -6,12 +6,16 @@ type IdeaListProps = {
   ideas: Idea[];
   loading?: boolean;
   onDeleted?: (ideaId: string) => void;
+  onVoted?: (ideaId: string) => void; 
+  hideDelete?: boolean; // UI-only: pass through to hide delete on every card
 };
 
 export default function IdeaList({
   ideas,
   loading = false,
   onDeleted,
+  onVoted,
+  hideDelete = false,
 }: IdeaListProps) {
   if (loading) {
     return (
@@ -40,6 +44,8 @@ export default function IdeaList({
           key={idea.id}
           idea={idea}
           onDeleted={onDeleted}
+          onVoted={onVoted}
+          hideDelete={hideDelete}
         />
       ))}
     </div>
