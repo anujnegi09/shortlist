@@ -27,7 +27,6 @@ export default function LoginPage() {
     }
   }
 
-  
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#F8FAFC] px-6">
       <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-900/5">
@@ -51,12 +50,16 @@ export default function LoginPage() {
         </button>
 
         {error && (
-          <p className="mt-4 text-center text-sm text-red-600">
-            {error}
-          </p>
+          <p className="mt-4 text-center text-sm text-red-600">{error}</p>
         )}
+        <button
+          type="button"
+          onClick={() => router.push("/")}
+          className="mt-5 w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+        >
+          Back to Home
+        </button>
       </div>
     </main>
-   
   );
 }

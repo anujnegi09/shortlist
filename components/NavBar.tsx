@@ -4,11 +4,12 @@ import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
 import { useAuth } from "@/providers/AuthProvider";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { user } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   async function handleSignOut() {
     try {
@@ -18,6 +19,8 @@ export default function Navbar() {
       console.error("Sign out failed:", error);
     }
   }
+
+  const isBoardPage = pathname === "/board";
 
   return (
     <nav className="border-b border-slate-200 bg-white">
@@ -48,12 +51,21 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link
-                href="/"
-                className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-500 hover:text-blue-600"
-              >
-                Home
-              </Link>
+              {isBoardPage ? (
+                <Link
+                  href="/"
+                  className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-500 hover:text-blue-600"
+                >
+                  Home
+                </Link>
+              ) : (
+                <Link
+                  href="/board"
+                  className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+                >
+                  Go to Board
+                </Link>
+              )}
 
               <button
                 type="button"
